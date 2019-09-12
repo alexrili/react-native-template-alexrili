@@ -1,12 +1,14 @@
 import request from 'utils/request'
 
 export default {
-  loginByUsernameAndPassoword(credentials) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 2000)
+  loginByUsernameAndPassoword({ username, password }) {
+
+    return request({
+      url: '/api/login',
+      method: 'post',
+      data: { email: username, password }
     })
+
   },
 
   logout() {
