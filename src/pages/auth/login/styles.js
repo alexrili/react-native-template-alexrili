@@ -22,6 +22,7 @@ export const Title = styled.Text`
     margin-bottom:40
 `
 
+
 export const LinkText = styled.Text`
     color:${({ theme }) => theme.dark};
     font-size:14;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Input } from 'components'
+import { Button, Input, ErrorMessage } from 'components'
 import { Container, Title, ScrollView, KeyboardAvoidingView, Form, LinkText } from './styles';
-
+import { errorHandler } from "utils/errors";
 
 import Auth from "services/auth"
 
@@ -10,16 +10,17 @@ export default ({ navigation }) => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
     const [loading, setLoading] = useState(false)
+    const [errors, setErrors] = useState({})
 
     async function login() {
         try {
             setLoading(true);
+            setErrors({})
             await Auth.loginByUsernameAndPassoword({ username, password })
             navigation.navigate("App");
         } catch (error) {
             setLoading(false)
-            // handle with errors
-            console.log(error)
+            setErrors(errorHandler(error));
         }
     }
 
@@ -34,6 +35,7 @@ export default ({ navigation }) => {
                 <ScrollView>
                     <Form>
                         <Title>app</Title>
+                        <ErrorMessage>{errors.generic}</ErrorMessage>
                         <Input autoCapitalize="none" placeholder="usuário" onChangeText={setUsername} />
                         <Input placeholder="senha" password onChangeText={setPassword} />
                         <Button loading={loading} onPress={login}>login</Button>
