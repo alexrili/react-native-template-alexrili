@@ -2,11 +2,12 @@ import AuthAction from "store/auth/actions"
 import ProfileAction from "store/profile/actions"
 import store from 'store';
 import AsyncStorage from '@react-native-community/async-storage';
+import api from "api/auth"
 
 class AuthService {
-    
-    loginByUsernameAndPassoword = async (credentials) => {
-        const { data } = await this.fakeLogin(credentials);
+
+    loginByUsernameAndPassoword = async ({ username, password }) => {
+        const { data } = await api.loginByUsernameAndPassoword({ username, password });
         this.__authenticate(data);
     }
 
@@ -40,6 +41,14 @@ class AuthService {
 
     fakeLogin = ({ username, password }) => {
         return this.getUserInfos()
+    }
+
+    getToken = () => {
+        const { auth } = store.getState();
+        if (auth) {
+            return auth.token;
+        }
+        return;
     }
 
     __authenticate = (user) => {
