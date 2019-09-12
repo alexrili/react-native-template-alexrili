@@ -57,7 +57,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-# Ignore react-native default files
-/android
-/ios
