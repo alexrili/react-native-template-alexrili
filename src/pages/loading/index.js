@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Container, Loading, Text } from './styles';
 import { ThemeContext } from 'styled-components';
-
+import { translate } from "locales";
 import AuthService from "services/auth";
 
 const AuthLoading = ({ navigation }) => {
@@ -22,7 +22,7 @@ const AuthLoading = ({ navigation }) => {
     return (
         <Container>
             <Loading color={theme.white} />
-            <Text>loading</Text>
+            <Text>{translate("loading.text")}</Text>
         </Container>
     );
 }

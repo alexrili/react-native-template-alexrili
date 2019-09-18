@@ -1,3 +1,5 @@
+import errorDictionary from './dictionary';
+
 // handle api errors
 export const errorHandler = err => {
     try {
@@ -11,9 +13,9 @@ export const errorHandler = err => {
             return objOfErrors;
         }
 
-        return { generic: errors }
+        return errorDictionary[errors] || { generic: errors }
     } catch (error) {
-        return { generic: errors };
+        return errorDictionary[errors] || { generic: errors };
     }
 };
 
