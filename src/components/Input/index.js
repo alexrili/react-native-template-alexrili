@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { Input } from './styles';
+import { Input, Container } from './styles';
 import PasswordField from './PasswordField';
+import ErrorMessage from '../ErrorMessage';
 
 export default (props) => {
-
-    if (props.password) {
-        return <PasswordField {...props}  />
-    }
-
     return (
-        <Input {...props} />
+        <Container>
+            {props.password ? <PasswordField {...props} /> : <Input {...props} />}
+            {props.error ? <ErrorMessage>{props.error}</ErrorMessage> : null}
+        </Container>
     );
 }
