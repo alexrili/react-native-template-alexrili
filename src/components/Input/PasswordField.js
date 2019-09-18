@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Input, Container,  IconContainer} from './styles';
+import { Input, PasswordContainer,  IconContainer} from './styles';
 import  Icon  from '../Icon';
 
 export default (props) => {
@@ -12,11 +12,11 @@ export default (props) => {
     }
 
     return (
-        <Container>
+        <PasswordContainer>
             <Input {...props} secureTextEntry={hideText} />
             <IconContainer>
                 <Icon name={hideText ? "eye-off" : "eye"} onPress={toggleHideText} />
             </IconContainer>
-        </Container>
+        </PasswordContainer>
     );
 }

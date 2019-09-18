@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Auth from "services/auth"
+import store from "store"
 
 // create an axios instance
 const service = axios.create({
@@ -10,8 +10,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    if (Auth.getToken()) {
-      config.headers['X-Token'] = Auth.getToken()
+    const { auth } = store.getState();
+    if (auth) {
+      config.headers['X-Token'] = auth.token
     }
     return config
   },
